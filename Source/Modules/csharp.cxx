@@ -307,6 +307,12 @@ public:
       if (Getattr(optionsnode, "dirprot")) {
 	allow_dirprot();
       }
+
+      /* Grab the dllimport attribute from the %module decl, if it exists */
+      DOH* importNode = nullptr;
+      if ((importNode = Getattr(optionsnode, "dllimport"))) {
+	dllimport = Copy(DohStr(importNode));
+      }
       allow_allprotected(GetFlag(optionsnode, "allprotected"));
     }
 
